@@ -8,6 +8,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Configure Stripe
+if not settings.STRIPE_SECRET_KEY:
+    raise ValueError("STRIPE_SECRET_KEY is not configured. Please set it in your environment variables.")
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 

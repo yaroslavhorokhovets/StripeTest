@@ -213,8 +213,9 @@ def create_checkout_session(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
         except Exception as e:
+            logger.error(f"Error creating checkout session: {str(e)}")
             return Response(
-                {'error': str(e)}, 
+                {'error': f'Error creating checkout session: {str(e)}'}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
     
