@@ -193,6 +193,70 @@ python manage.py test
 5. Set up SSL certificates
 6. Configure proper logging
 
+## Troubleshooting
+
+### Import Errors
+
+If you see import errors like:
+- `Import "rest_framework.response" could not be resolved`
+- `datetime is not defined`
+- `logger is not defined`
+
+**Solutions:**
+
+1. **Check Python Environment**:
+   ```bash
+   which python
+   pip list | grep djangorestframework
+   ```
+
+2. **Reinstall Dependencies**:
+   ```bash
+   pip install -r requirements.txt --force-reinstall
+   ```
+
+3. **Restart IDE/Editor**: Sometimes the linter needs to be restarted to recognize new packages.
+
+4. **Check Virtual Environment**: Make sure you're using the correct virtual environment:
+   ```bash
+   source venv/bin/activate  # or your virtual environment activation command
+   ```
+
+### Database Errors
+
+If you see errors like:
+- `no such table: subscriptions_usersubscription`
+
+**Solution:**
+```bash
+python manage.py migrate
+```
+
+### Static Files Error
+
+If you see:
+- `GET http://127.0.0.1:8000/static/css/custom.css net::ERR_ABORTED 404`
+
+**Solution:**
+```bash
+python manage.py collectstatic
+```
+
+### Quick Setup Script
+
+Use the provided setup script for automated setup:
+
+```bash
+python setup.py
+```
+
+This script will:
+- Create `.env` file
+- Install dependencies
+- Run migrations
+- Create superuser (optional)
+- Seed subscription plans
+
 ## Support
 
 For issues or questions, please refer to the Django and Stripe documentation or create an issue in the repository.
