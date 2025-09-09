@@ -214,6 +214,12 @@ def create_checkout_session(request):
             )
         except Exception as e:
             logger.error(f"Error creating checkout session: {str(e)}")
+            # Check if it's a Stripe configuration error
+            if "STRIPE_SECRET_KEY is not configured" in str(e):
+                return Response(
+                    {'error': 'Payment system is not configured. Please contact support.'}, 
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
             return Response(
                 {'error': f'Error creating checkout session: {str(e)}'}, 
                 status=status.HTTP_400_BAD_REQUEST

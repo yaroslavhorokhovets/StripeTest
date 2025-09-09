@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Configure Stripe
-if not settings.STRIPE_SECRET_KEY:
+if not settings.STRIPE_SECRET_KEY or settings.STRIPE_SECRET_KEY == 'sk_test_your_secret_key_here':
     raise ValueError("STRIPE_SECRET_KEY is not configured. Please set it in your environment variables.")
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -20,6 +20,10 @@ class StripeService:
     def create_customer(user):
         """Create a Stripe customer for a user"""
         try:
+            # Check if Stripe is properly configured
+            if not settings.STRIPE_SECRET_KEY or settings.STRIPE_SECRET_KEY == 'sk_test_your_secret_key_here':
+                raise ValueError("STRIPE_SECRET_KEY is not configured. Please set it in your environment variables.")
+            
             customer = stripe.Customer.create(
                 email=user.email,
                 name=f"{user.first_name} {user.last_name}".strip() or user.username,
@@ -30,6 +34,9 @@ class StripeService:
             )
             return customer
         except stripe.error.StripeError as e:
+            logger.error(f"Error creating Stripe customer for user {user.id}: {str(e)}")
+            raise
+        except Exception as e:
             logger.error(f"Error creating Stripe customer for user {user.id}: {str(e)}")
             raise
     
