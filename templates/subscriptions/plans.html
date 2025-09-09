@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}Subscription Plans - SubService{% endblock %}
+
+{% block content %}
+<div class="gradient-bg py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl font-bold text-white mb-4">Choose Your Plan</h1>
+        <p class="text-xl text-blue-100 mb-8">Start with a 14-day free trial. No credit card required.</p>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Basic Plan -->
+        <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Basic</h3>
+                <div class="mb-6">
+                    <div class="flex justify-center items-baseline">
+                        <span class="text-4xl font-bold text-gray-900">$15</span>
+                        <span class="text-xl text-gray-500 ml-2">/month</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2">or $150/year (save $30)</div>
+                </div>
+                
+                <ul class="text-left space-y-3 mb-8">
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Core features included
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Email support
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Basic analytics
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        14-day free trial
+                    </li>
+                </ul>
+                
+                <div class="space-y-3">
+                    <button onclick="selectPlan('monthly-basic')" class="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
+                        Start Monthly Trial
+                    </button>
+                    <button onclick="selectPlan('yearly-basic')" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-200">
+                        Start Yearly Trial
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="bg-white rounded-lg shadow-lg p-8 card-hover border-2 border-primary-500 relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span class="bg-primary-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+            </div>
+            
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Pro</h3>
+                <div class="mb-6">
+                    <div class="flex justify-center items-baseline">
+                        <span class="text-4xl font-bold text-gray-900">$30</span>
+                        <span class="text-xl text-gray-500 ml-2">/month</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2">or $300/year (save $60)</div>
+                </div>
+                
+                <ul class="text-left space-y-3 mb-8">
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Everything in Basic
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Priority support
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Advanced analytics
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        API access
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        14-day free trial
+                    </li>
+                </ul>
+                
+                <div class="space-y-3">
+                    <button onclick="selectPlan('monthly-pro')" class="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
+                        Start Monthly Trial
+                    </button>
+                    <button onclick="selectPlan('yearly-pro')" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-200">
+                        Start Yearly Trial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="mt-16">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Frequently Asked Questions</h2>
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">How does the free trial work?</h3>
+                <p class="text-gray-600">You get 14 days to try any plan completely free. No credit card required to start your trial.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Can I change plans later?</h3>
+                <p class="text-gray-600">Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">What payment methods do you accept?</h3>
+                <p class="text-gray-600">We accept all major credit cards through our secure Stripe payment processor.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function selectPlan(planKey) {
+    {% if user.is_authenticated %}
+        // User is logged in, redirect to checkout
+        window.location.href = `/api/subscriptions/checkout/?plan=${planKey}`;
+    {% else %}
+        // User needs to login first
+        window.location.href = '/login/?next=' + encodeURIComponent('/subscriptions/plans/');
+    {% endif %}
+}
+</script>
+{% endblock %}
