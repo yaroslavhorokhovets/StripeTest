@@ -41,9 +41,12 @@ class StripeService:
             raise
     
     @staticmethod
-    def create_subscription(customer_id, price_id, trial_period_days=14):
+    def create_subscription(customer_id, price_id, trial_period_days=None):
         """Create a Stripe subscription with trial period"""
         try:
+            if trial_period_days is None:
+                trial_period_days = settings.TRIAL_PERIOD_DAYS
+                
             subscription = stripe.Subscription.create(
                 customer=customer_id,
                 items=[{'price': price_id}],
@@ -122,7 +125,7 @@ class SubscriptionService:
             subscription = StripeService.create_subscription(
                 customer_id or user.subscription.stripe_customer_id,
                 plan.stripe_price_id,
-                trial_period_days=14
+                trial_period_days=settings.TRIAL_PERIOD_DAYS
             )
             
             # Create UserSubscription
