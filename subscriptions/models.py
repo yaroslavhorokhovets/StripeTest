@@ -44,6 +44,7 @@ class UserSubscription(models.Model):
         ('past_due', 'Past Due'),
         ('canceled', 'Canceled'),
         ('unpaid', 'Unpaid'),
+        ('paused', 'Paused'),
     ]
     
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='subscription')
@@ -105,11 +106,19 @@ class SubscriptionHistory(models.Model):
         ('created', 'Created'),
         ('trial_started', 'Trial Started'),
         ('trial_ended', 'Trial Ended'),
+        ('trial_will_end', 'Trial Will End'),
         ('activated', 'Activated'),
         ('renewed', 'Renewed'),
         ('canceled', 'Canceled'),
+        ('paused', 'Paused'),
         ('payment_failed', 'Payment Failed'),
         ('plan_changed', 'Plan Changed'),
+        ('status_changed', 'Status Changed'),
+        ('checkout_completed', 'Checkout Completed'),
+        ('customer_deleted', 'Customer Deleted'),
+        ('invoice_created', 'Invoice Created'),
+        ('invoice_paid', 'Invoice Paid'),
+        ('payment_method_attached', 'Payment Method Attached'),
     ]
     
     subscription = models.ForeignKey(UserSubscription, on_delete=models.CASCADE, related_name='history')
