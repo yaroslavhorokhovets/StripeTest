@@ -9,6 +9,8 @@ from django.views.decorators.http import require_POST
 from django.utils.decorators import method_decorator
 import json
 import stripe
+import logging
+from datetime import datetime
 from django.conf import settings
 
 from .models import SubscriptionPlan, UserSubscription, SubscriptionHistory, StripeWebhookEvent
@@ -18,6 +20,9 @@ from .serializers import (
     ChangePlanSerializer, UserSerializer
 )
 from .services import SubscriptionService, StripeService
+
+# Initialize logger
+logger = logging.getLogger(__name__)
 
 
 class SubscriptionPlanListView(generics.ListAPIView):
