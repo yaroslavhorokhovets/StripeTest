@@ -2,6 +2,11 @@
 
 {% block title %}Subscription Plans - SubService{% endblock %}
 
+{% block extra_css %}
+<!-- CSRF Token for JavaScript -->
+{% csrf_token %}
+{% endblock %}
+
 {% block content %}
 <div class="gradient-bg py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -146,8 +151,31 @@
 <script>
 function selectPlan(planKey) {
     {% if user.is_authenticated %}
-        // User is logged in, redirect to checkout
-        window.location.href = `/api/subscriptions/checkout/?plan=${planKey}`;
+        // User is logged in, create checkout session via POST
+        fetch('/api/subscriptions/checkout/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({
+                plan_lookup_key: planKey
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.checkout_url) {
+                // Redirect to Stripe checkout
+                window.location.href = data.checkout_url;
+            } else {
+                // Handle error
+                alert('Error creating checkout session: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error creating checkout session. Please try again.');
+        });
     {% else %}
         // User needs to login first
         window.location.href = '/login/?next=' + encodeURIComponent('/subscriptions/plans/');
