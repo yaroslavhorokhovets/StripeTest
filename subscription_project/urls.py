@@ -4,6 +4,8 @@ URL configuration for subscription_project project.
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 from subscriptions import template_views
 
@@ -30,3 +32,7 @@ urlpatterns = [
     path('api/template/subscriptions/cancel/', template_views.cancel_subscription_view, name='template-cancel-subscription'),
     path('api/template/subscriptions/change-plan/', template_views.change_plan_view, name='template-change-plan'),
 ]
+
+# Serve static files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
