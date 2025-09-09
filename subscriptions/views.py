@@ -188,8 +188,8 @@ def create_checkout_session(request):
                     'quantity': 1,
                 }],
                 mode='subscription',
-                success_url=f"{request.build_absolute_uri('/')}?success=true",
-                cancel_url=f"{request.build_absolute_uri('/')}?canceled=true",
+                success_url=f"{request.build_absolute_uri('/checkout/success/')}",
+                cancel_url=f"{request.build_absolute_uri('/checkout/canceled/')}",
                 trial_period_days=14,
                 metadata={
                     'user_id': request.user.id,
